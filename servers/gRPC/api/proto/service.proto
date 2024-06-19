@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package gRPC;
+
+option go_package = "./service";
+
+service MusicService {
+    rpc CreateUser (User) returns (User);
+    rpc GetUsers (Empty) returns (Users);
+    rpc GetUser (UserId) returns (User);
+    rpc UpdateUser (User) returns (User);
+    rpc DeleteUser (UserId) returns (Empty);
+
+    rpc CreateMusic (Music) returns (Music);
+    rpc GetMusics (Empty) returns (Musics);
+    rpc GetMusic (MusicId) returns (Music);
+    rpc UpdateMusic (Music) returns (Music);
+    rpc DeleteMusic (MusicId) returns (Empty);
+
+    rpc CreatePlaylist (Playlist) returns (Playlist);
+    rpc GetPlaylists (Empty) returns (Playlists);
+    rpc GetPlaylist (PlaylistId) returns (Playlist);
+    rpc UpdatePlaylist (Playlist) returns (Playlist);
+    rpc DeletePlaylist (PlaylistId) returns (Empty);
+}
+
+message Empty {}
+
+message User {
+    int32 id = 1;
+    string name = 2;
+    int32 age = 3;
+}
+
+message UserId {
+    int32 id = 1;
+}
+
+message Users {
+    repeated User users = 1;
+}
+
+message Music {
+    int32 id = 1;
+    string name = 2;
+    string artist = 3;
+}
+
+message MusicId {
+    int32 id = 1;
+}
+
+message Musics {
+    repeated Music musics = 1;
+}
+
+message Playlist {
+    int32 id = 1;
+    string name = 2;
+    int32 user_id = 3;
+    repeated Music musics = 4;
+}
+
+message PlaylistId {
+    int32 id = 1;
+}
+
+message Playlists {
+    repeated Playlist playlists = 1;
+}
