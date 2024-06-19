@@ -20,6 +20,8 @@ func CreatePlaylist(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 		return
 	}
 
+	w.Header().Set("Content-Type", "application/json")
+
 	json.NewEncoder(w).Encode(playlist)
 }
 
@@ -41,6 +43,8 @@ func GetPlaylists(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 		playlists = append(playlists, playlist)
 	}
 
+	w.Header().Set("Content-Type", "application/json")
+
 	json.NewEncoder(w).Encode(playlists)
 }
 
@@ -59,6 +63,8 @@ func GetPlaylist(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 		return
 	}
 
+	w.Header().Set("Content-Type", "application/json")
+
 	json.NewEncoder(w).Encode(playlist)
 }
 
@@ -74,6 +80,8 @@ func UpdatePlaylist(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+
+	w.Header().Set("Content-Type", "application/json")
 
 	json.NewEncoder(w).Encode(playlist)
 }

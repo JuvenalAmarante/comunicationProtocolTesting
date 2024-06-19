@@ -20,6 +20,8 @@ func CreateUser(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 		return
 	}
 
+	w.Header().Set("Content-Type", "application/json")
+
 	json.NewEncoder(w).Encode(user)
 }
 
@@ -41,6 +43,8 @@ func GetUsers(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 		users = append(users, user)
 	}
 
+	w.Header().Set("Content-Type", "application/json")
+
 	json.NewEncoder(w).Encode(users)
 }
 
@@ -59,6 +63,8 @@ func GetUser(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 		return
 	}
 
+	w.Header().Set("Content-Type", "application/json")
+
 	json.NewEncoder(w).Encode(user)
 }
 
@@ -74,6 +80,8 @@ func UpdateUser(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+
+	w.Header().Set("Content-Type", "application/json")
 
 	json.NewEncoder(w).Encode(user)
 }

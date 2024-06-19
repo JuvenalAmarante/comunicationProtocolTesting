@@ -20,6 +20,8 @@ func CreateMusic(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 		return
 	}
 
+	w.Header().Set("Content-Type", "application/json")
+
 	json.NewEncoder(w).Encode(music)
 }
 
@@ -41,6 +43,8 @@ func GetMusics(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 		musics = append(musics, music)
 	}
 
+	w.Header().Set("Content-Type", "application/json")
+
 	json.NewEncoder(w).Encode(musics)
 }
 
@@ -59,6 +63,8 @@ func GetMusic(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 		return
 	}
 
+	w.Header().Set("Content-Type", "application/json")
+
 	json.NewEncoder(w).Encode(music)
 }
 
@@ -74,6 +80,8 @@ func UpdateMusic(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+
+	w.Header().Set("Content-Type", "application/json")
 
 	json.NewEncoder(w).Encode(music)
 }
